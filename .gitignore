@@ -1,0 +1,6 @@
+.DS_Store
+/.idea
+/.phpintel
+/.vscode
+/vendor
+Thumbs.db
