@@ -18,6 +18,8 @@ composer require benjamincrozat/raw-blades
 Basic view render:
 
 ```php
+use BC\RawBlades\Blade;
+
 $blade = new Blade(__DIR__ . '/views', __DIR__ . '/cache');
 
 echo $blade->make('home')->render();
