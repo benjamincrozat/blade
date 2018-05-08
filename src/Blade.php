@@ -21,44 +21,44 @@ class Blade
      *
      * @var array
      */
-    protected $viewPaths;
+    public $viewPaths;
 
     /**
      * Path to compiled Blade files.
      *
      * @var string
      */
-    protected $compiledPath;
+    public $compiledPath;
 
     /**
      * @var DispatcherContract
      */
-    protected $events;
+    public $events;
 
     /**
      * @var Filesystem
      */
-    protected $files;
+    public $files;
 
     /**
      * @var EngineResolver
      */
-    protected $resolver;
+    public $resolver;
 
     /**
      * @var Compiler
      */
-    protected $compiler;
+    public $compiler;
 
     /**
      * @var FileViewFinder
      */
-    protected $finder;
+    public $finder;
 
     /**
      * @var Factory
      */
-    protected $view;
+    public $view;
 
     /**
      * @param string|array             $view_paths
