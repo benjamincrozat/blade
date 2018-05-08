@@ -46,9 +46,9 @@ class Blade
     public $resolver;
 
     /**
-     * @var Compiler
+     * @var CompilerInterface
      */
-    public $compiler;
+    public $bladeCompiler;
 
     /**
      * @var FileViewFinder
@@ -92,8 +92,8 @@ class Blade
      */
     public function __call($name, $arguments)
     {
-        if (method_exists($this->compiler, $name)) {
-            return $this->compiler->{$name}(...$arguments);
+        if (method_exists($this->bladeCompiler, $name)) {
+            return $this->bladeCompiler->{$name}(...$arguments);
         }
 
         if (method_exists($this->view, $name)) {
@@ -139,10 +139,10 @@ class Blade
      */
     protected function registerBladeEngine()
     {
-        $this->compiler = new BladeCompiler($this->files, $this->compiledPath);
+        $this->bladeCompiler = new BladeCompiler($this->files, $this->compiledPath);
 
         $this->resolver->register('blade', function () {
-            return new CompilerEngine($this->compiler, $this->files);
+            return new CompilerEngine($this->bladeCompiler, $this->files);
         });
 
         return $this;
