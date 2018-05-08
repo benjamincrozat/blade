@@ -94,10 +94,9 @@ class Blade
     protected function registerEngineResolver()
     {
         $this->resolver = new EngineResolver();
-        $this->registerPhpEngine($this->resolver);
-        $this->registerBladeEngine($this->resolver);
 
-        return $this;
+        return $this->registerPhpEngine($this->resolver)
+            ->registerBladeEngine($this->resolver);
     }
 
     protected function registerPhpEngine($resolver)
