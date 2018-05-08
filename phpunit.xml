@@ -9,7 +9,7 @@
          processIsolation="false"
          stopOnFailure="false">
     <testsuites>
-        <testsuite name="Raw Blades Test Suite">
+        <testsuite name="Blade Test Suite">
             <directory suffix="Test.php">tests</directory>
         </testsuite>
     </testsuites>

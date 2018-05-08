@@ -1,6 +1,6 @@
 <?php
 
-use BC\RawBlades\Blade;
+use BC\Blade\Blade;
 
 class BladeTest extends PHPUnit\Framework\TestCase
 {

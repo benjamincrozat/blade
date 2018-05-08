@@ -1,16 +1,16 @@
-[![Build Status](https://travis-ci.org/benjamincrozat/raw-blades.svg?branch=master)](https://travis-ci.org/benjamincrozat/raw-blades)
-[![Latest Stable Version](https://poser.pugx.org/benjamincrozat/raw-blades/v/stable)](https://packagist.org/packages/benjamincrozat/raw-blades)
-[![License](https://poser.pugx.org/benjamincrozat/raw-blades/license)](https://packagist.org/packages/benjamincrozat/raw-blades)
-[![Total Downloads](https://poser.pugx.org/benjamincrozat/raw-blades/downloads)](https://packagist.org/packages/benjamincrozat/raw-blades)
+[![Build Status](https://travis-ci.org/benjamincrozat/blade.svg?branch=master)](https://travis-ci.org/benjamincrozat/blade)
+[![Latest Stable Version](https://poser.pugx.org/benjamincrozat/blade/v/stable)](https://packagist.org/packages/benjamincrozat/blade)
+[![License](https://poser.pugx.org/benjamincrozat/blade/license)](https://packagist.org/packages/benjamincrozat/blade)
+[![Total Downloads](https://poser.pugx.org/benjamincrozat/blade/downloads)](https://packagist.org/packages/benjamincrozat/blade)
 
-# Raw Blades
+# Blade
 
-Use Laravel Blade in any PHP project with minimal footprints.
+Use [Laravel Blade](https://laravel.com/docs/blade) in any PHP project with minimal footprints.
 
 ## Installation
 
 ```php
-composer require benjamincrozat/raw-blades
+composer require benjamincrozat/blade
 ```
 
 ## Usage
@@ -18,7 +18,7 @@ composer require benjamincrozat/raw-blades
 Basic view render:
 
 ```php
-use BC\RawBlades\Blade;
+use BC\Blade\Blade;
 
 $blade = new Blade(__DIR__ . '/views', __DIR__ . '/cache');
 
