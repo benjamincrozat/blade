@@ -22,19 +22,21 @@ class BladeTest extends PHPUnit\Framework\TestCase
         $lorem = 'Lorem ipsum dolor sit amet';
 
         $blade = new Blade(__DIR__ . '/views', __DIR__ . '/cache');
-
         $blade->directive('lorem', function () use ($lorem) {
             return '<?= "' . $lorem . '"; ?>';
         });
         $blade->component('layout', 'layout');
         $blade->component('components.example', 'example');
+        $blade->composer('*', function ($view) {
+            $view->withGod('God');
+        });
 
         $output = $blade->make('pages.example')
-            ->withName($name = 'Benjamin')
+            ->withName('Homer Simpson')
             ->render();
 
         $this->assertContains('<!DOCTYPE html>', $output);
-        $this->assertContains("Hello $name!", $output);
+        $this->assertContains("Hello Homer Simpson! I'm God!", $output);
         $this->assertContains('<section>', $output);
         $this->assertContains($lorem, $output);
         $this->assertContains('</section>', $output);

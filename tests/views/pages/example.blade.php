@@ -1,5 +1,5 @@
 @layout
-    Hello {{ $name }}!
+    Hello {{ $name }}! I'm {{ $god }}!
 
     @example
         @lorem

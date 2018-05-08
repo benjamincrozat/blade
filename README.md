@@ -49,7 +49,18 @@ Custom components:
 $blade->component('components.example', 'example');
 ```
 
+Even view composers work:
+
+```php
+$blade->composer('*', function ($view) {
+    // Every view will have access to the `$foo` variable.
+    $view->withFoo('bar');
+});
+```
+
 More on the [official documentation](https://laravel.com/docs/blade).
+
+Enjoy!
 
 ## License
 
