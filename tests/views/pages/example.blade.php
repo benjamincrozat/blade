@@ -1,5 +1,5 @@
 @layout
-    @lorem
+    Hello {{ $name }}!
 
     @example
         @lorem

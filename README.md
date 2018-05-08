@@ -25,6 +25,16 @@ $blade = new Blade(__DIR__ . '/views', __DIR__ . '/cache');
 echo $blade->make('home')->render();
 ```
 
+Assign variables:
+
+```php
+// First way.
+$blade->make('home', ['foo' => 'bar'])->render();
+
+// Expressive way.
+$blade->make('home')->withFoo('bar')->render();
+```
+
 Custom directives:
 
 ```php
@@ -38,6 +48,8 @@ Custom components:
 ```php
 $blade->component('components.example', 'example');
 ```
+
+More on the [official documentation](https://laravel.com/docs/blade).
 
 ## License
 
