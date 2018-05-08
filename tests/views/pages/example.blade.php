@@ -1,7 +1,7 @@
-@layout
-    Hello {{ $name }}!
+@component('layout')
+    Hello {{ $name }}! I'm {{ $god }}!
 
-    @example
+    @component('components.example')
         @lorem
-    @endexample
-@endlayout
+    @endcomponent
+@endcomponent
