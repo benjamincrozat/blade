@@ -1,7 +1,7 @@
 @layout
-    @loremIpsum
+    @lorem
 
     @example
-        @loremIpsum
+        @lorem
     @endexample
 @endlayout

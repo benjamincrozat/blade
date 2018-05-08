@@ -36,7 +36,7 @@ $blade->directive('foo', function () {
 Custom components:
 
 ```php
-$blade->component('section', 'components.section');
+$blade->component('components.example', 'example');
 ```
 
 ## License

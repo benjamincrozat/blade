@@ -31,6 +31,11 @@ class Blade
     protected $compiledPath;
 
     /**
+     * @var DispatcherContract
+     */
+    protected $events;
+
+    /**
      * @var Filesystem
      */
     protected $files;
@@ -64,14 +69,14 @@ class Blade
      * @param ViewFinderInterface|null $finder
      * @param FactoryContract|null     $factory
      */
-    public function __construct($view_paths, string $compiled_path, DispatcherContract $events = null, Filesystem $files = null, EngineResolver $resolver = null, ViewFinderInterface $finder = null, FactoryContract $factory = null)
+    public function __construct($view_paths, string $compiled_path, DispatcherContract $events = null, ViewFinderInterface $finder = null, FactoryContract $factory = null)
     {
         $this->viewPaths    = (array) $view_paths;
         $this->compiledPath = $compiled_path;
         $this->events       = $events ?? new Dispatcher();
 
-        $this->registerFilesystem($files)
-            ->registerEngineResolver($resolver)
+        $this->registerFilesystem()
+            ->registerEngineResolver()
             ->registerViewFinder($finder)
             ->registerFactory($factory);
     }
@@ -96,21 +101,30 @@ class Blade
         }
     }
 
-    protected function registerFilesystem(Filesystem $files = null)
+    /**
+     * @return self
+     */
+    protected function registerFilesystem()
     {
-        $this->files = $files ?? new Filesystem();
+        $this->files = new Filesystem();
 
         return $this;
     }
 
-    protected function registerEngineResolver(EngineResolver $resolver = null)
+    /**
+     * @return self
+     */
+    protected function registerEngineResolver()
     {
-        $this->resolver = $resolver ?? new EngineResolver();
+        $this->resolver = new EngineResolver();
 
-        return $this->registerPhpEngine($this->resolver)
-            ->registerBladeEngine($this->resolver);
+        return $this->registerPhpEngine()
+            ->registerBladeEngine();
     }
 
+    /**
+     * @return self
+     */
     protected function registerPhpEngine()
     {
         $this->resolver->register('php', function () {
@@ -120,18 +134,25 @@ class Blade
         return $this;
     }
 
+    /**
+     * @return self
+     */
     protected function registerBladeEngine()
     {
+        $this->compiler = new BladeCompiler($this->files, $this->compiledPath);
+
         $this->resolver->register('blade', function () {
-            return new CompilerEngine(
-                $this->compiler = new BladeCompiler($this->files, $this->compiledPath),
-                $this->files
-            );
+            return new CompilerEngine($this->compiler, $this->files);
         });
 
         return $this;
     }
 
+    /**
+     * @param ViewFinderInterface|null $finder
+     *
+     * @return self
+     */
     protected function registerViewFinder(ViewFinderInterface $finder = null)
     {
         $this->finder = $finder ?? new FileViewFinder($this->files, $this->viewPaths);
@@ -139,6 +160,11 @@ class Blade
         return $this;
     }
 
+    /**
+     * @param FactoryContract|null $factory
+     *
+     * @return self
+     */
     protected function registerFactory(FactoryContract $factory = null)
     {
         $this->view = $factory ?? new Factory($this->resolver, $this->finder, $this->events);
