@@ -27,7 +27,7 @@ use BC\Blade\Blade;
 $blade = new Blade(__DIR__ . '/views', __DIR__ . '/cache');
 
 echo $blade->make('home')
-    ->withSomeVariable('some value')
+    ->withSomeVariable('some value') // `$someVariable` will be available in your Blade file.
     ->render();
 ```
 
