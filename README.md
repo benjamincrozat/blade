@@ -22,43 +22,13 @@ use BC\Blade\Blade;
 
 $blade = new Blade(__DIR__ . '/views', __DIR__ . '/cache');
 
-echo $blade->make('home')->render();
+echo $blade->make('home')
+    ->withSomeVariable('some value')
+    ->render();
 ```
 
-Assign variables:
-
-```php
-// First way.
-$blade->make('home', ['foo' => 'bar'])->render();
-
-// Expressive way.
-$blade->make('home')->withFoo('bar')->render();
-```
-
-Custom directives:
-
-```php
-$blade->directive('foo', function () {
-    //
-});
-```
-
-Custom components:
-
-```php
-$blade->component('components.example', 'example');
-```
-
-Even view composers work:
-
-```php
-$blade->composer('*', function ($view) {
-    // Every view will have access to the `$foo` variable.
-    $view->withFoo('bar');
-});
-```
-
-More on the [official documentation](https://laravel.com/docs/blade).
+Learn how to use Blade on the [official documentation](https://laravel.com/docs/blade).  
+Still using PHP 7.0? Check out the docoumentation for [Blade 5.5](https://laravel.com/docs/5.5/blade).
 
 Enjoy!
 
