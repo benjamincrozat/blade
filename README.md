@@ -7,6 +7,10 @@
 
 Use [Laravel Blade](https://laravel.com/docs/blade) in any PHP project with minimal footprints.
 
+## Requirements
+
+- PHP 7.0+
+
 ## Installation
 
 ```php
