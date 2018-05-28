@@ -19,7 +19,9 @@ composer require benjamincrozat/blade
 
 ## Usage
 
-Basic view render:
+This package allows you to do almost everything you were able to do in a Laravel project.
+
+Here is a basic view rendering:
 
 ```php
 use BC\Blade\Blade;
@@ -31,7 +33,23 @@ echo $blade->make('home')
     ->render();
 ```
 
-Learn how to use Blade on the [official documentation](https://laravel.com/docs/blade).  
+Add the `@hello('John')` directive:
+
+```php
+$blade->directive('hello', function ($expression) {
+    return '<?php echo \'Hello ' . $expression . '\'; ?>';
+});
+```
+
+Make a variable available in all views with view composers:
+
+```php
+$blade->composer('*', function ($view) {
+    $view->withUser($this->container->get('auth')->user());
+});
+```
+
+... and so on. Learn how to use Blade on the [official documentation](https://laravel.com/docs/blade).  
 Still using PHP 7.0? Check out the docoumentation for [Blade 5.5](https://laravel.com/docs/5.5/blade).
 
 Enjoy!
