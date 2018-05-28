@@ -19,6 +19,7 @@
         "templates"
     ],
     "require": {
+        "php": ">= 7.0",
         "illuminate/view": "5.*"
     },
     "require-dev": {
