@@ -49,8 +49,7 @@ $blade->composer('*', function ($view) {
 });
 ```
 
-... and so on. Learn how to use Blade on the [official documentation](https://laravel.com/docs/blade).  
-Still using PHP 7.0? Check out the docoumentation for [Blade 5.5](https://laravel.com/docs/5.5/blade).
+... and so on. Learn how to use Blade on the [official documentation](https://laravel.com/docs/blade).
 
 Enjoy!
 
