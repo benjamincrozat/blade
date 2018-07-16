@@ -69,11 +69,11 @@ class Blade
      * @param ViewFinderInterface|null $finder
      * @param FactoryContract|null     $factory
      */
-    public function __construct($view_paths, string $compiled_path, DispatcherContract $events = null, ViewFinderInterface $finder = null, FactoryContract $factory = null)
+    public function __construct($view_paths, $compiled_path, DispatcherContract $events = null, ViewFinderInterface $finder = null, FactoryContract $factory = null)
     {
         $this->viewPaths    = (array) $view_paths;
         $this->compiledPath = $compiled_path;
-        $this->events       = $events ?? new Dispatcher();
+        $this->events       = $events ?: new Dispatcher();
 
         $this->registerFilesystem()
             ->registerEngineResolver()
@@ -155,7 +155,7 @@ class Blade
      */
     protected function registerViewFinder(ViewFinderInterface $finder = null)
     {
-        $this->finder = $finder ?? new FileViewFinder($this->files, $this->viewPaths);
+        $this->finder = $finder ?: new FileViewFinder($this->files, $this->viewPaths);
 
         return $this;
     }
@@ -167,7 +167,7 @@ class Blade
      */
     protected function registerFactory(FactoryContract $factory = null)
     {
-        $this->view = $factory ?? new Factory($this->resolver, $this->finder, $this->events);
+        $this->view = $factory ?: new Factory($this->resolver, $this->finder, $this->events);
 
         return $this;
     }
