@@ -9,7 +9,7 @@ Use [Laravel Blade](https://laravel.com/docs/blade) in any PHP project with mini
 
 ## Requirements
 
-- PHP 7.0+
+- PHP 5.6+
 
 ## Installation
 
