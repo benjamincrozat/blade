@@ -7,6 +7,8 @@
 
 Use [Laravel Blade](https://laravel.com/docs/blade) in any PHP project with minimal footprints.
 
+**Yes, this is just a basic read me file. To learn how to use Blade, please refer to the [official documentation](https://laravel.com/docs/blade).*
+
 ## Requirements
 
 - PHP 5.6+
