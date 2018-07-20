@@ -3,4 +3,5 @@
 /.phpintel
 /.vscode
 /vendor
+composer.lock
 Thumbs.db
