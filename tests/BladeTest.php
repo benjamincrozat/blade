@@ -1,6 +1,7 @@
 <?php
 
 use BC\Blade\Blade;
+use Illuminate\View\View;
 
 class BladeTest extends PHPUnit\Framework\TestCase
 {
@@ -19,24 +20,12 @@ class BladeTest extends PHPUnit\Framework\TestCase
     /** @test */
     public function it_compiles()
     {
-        $lorem = 'Lorem ipsum dolor sit amet';
+        $bar = 'Lorem ipsum dolor sit amet';
 
-        $blade = new Blade(__DIR__ . '/views', __DIR__ . '/cache');
-        $blade->directive('lorem', function () use ($lorem) {
-            return '<?= "' . $lorem . '"; ?>';
-        });
-        $blade->composer('*', function ($view) {
-            $view->withGod('God');
-        });
-
-        $output = $blade->make('pages.example')
-            ->withName('Homer Simpson')
+        $output = (new Blade(__DIR__ . '/views', __DIR__ . '/cache'))
+            ->make('foo', compact('bar'))
             ->render();
 
-        $this->assertContains('<!DOCTYPE html>', $output);
-        $this->assertContains("Hello Homer Simpson! I'm God!", $output);
-        $this->assertContains('<section>', $output);
-        $this->assertContains($lorem, $output);
-        $this->assertContains('</section>', $output);
+        $this->assertContains($bar, $output);
     }
 }

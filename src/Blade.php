@@ -14,6 +14,10 @@ use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\Contracts\View\Factory as FactoryContract;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 
+/**
+ * @method \Illuminate\Contracts\View\View make($view, $data = [], $mergeData = [])
+ * @method \Illuminate\Contracts\View\View with($key, $value = null)
+ */
 class Blade
 {
     /**
