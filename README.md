@@ -7,7 +7,7 @@
 
 Use [Laravel Blade](https://laravel.com/docs/blade) in any PHP project with minimal footprints.
 
-**Yes, this is just a basic read me file. To learn how to use Blade, please refer to the [official documentation](https://laravel.com/docs/blade).**
+**Yes, this repository is just a port of Blade to non-Laravel projects. If you don't know about it yet, please refer to the [official documentation](https://laravel.com/docs/blade).**
 
 ## Requirements
 
@@ -45,7 +45,9 @@ Make a variable available in all views with view composers:
 
 ```php
 $blade->composer('*', function ($view) {
-    $view->withUser($this->container->get('auth')->user());
+    $view->with([
+        'user' => $this->container->get('auth')->user(),
+    ]);
 });
 ```
 
