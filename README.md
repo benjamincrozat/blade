@@ -39,7 +39,7 @@ Add the `@hello('John')` directive:
 $blade->directive('hello', function ($expression) {
     $expression = trim($expression, '\'"');
 
-    return '<?php echo "Hello $expression!"; ?>';
+    return "<?php echo 'Hello $expression!'; ?>";
 });
 ```
 
