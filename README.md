@@ -45,9 +45,7 @@ Make a variable available in all views thanks to view composers:
 
 ```php
 $blade->composer('*', function ($view) {
-    $view->with([
-        'user' => $this->container->get('auth')->user(),
-    ]);
+    $view->with(['foo' => 'bar']);
 });
 ```
 
