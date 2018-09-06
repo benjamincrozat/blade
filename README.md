@@ -5,7 +5,7 @@
 
 # Blade
 
-Use [Laravel Blade](https://laravel.com/docs/blade) in any PHP project with minimal footprints. The adapter class is clean and I don't make use of unecessary Laravel related dependencies.
+Use [Laravel Blade](https://laravel.com/docs/blade) in any PHP project. The adapter class is clean and I don't make use of unecessary Laravel related dependencies.
 
 **If you don't know about Blade yet, please refer to the [official documentation](https://laravel.com/docs/blade).**
 
@@ -38,7 +38,7 @@ Add the `@hello('John')` directive:
 ```php
 $blade->directive('hello', function ($expression) {
     $expression = trim($expression, '\'"');
-    
+
     return '<?php echo "Hello $expression!"; ?>';
 });
 ```

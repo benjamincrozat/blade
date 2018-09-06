@@ -25,44 +25,44 @@ class Blade
      *
      * @var array
      */
-    public $viewPaths;
+    protected $viewPaths;
 
     /**
      * Path to compiled Blade files.
      *
      * @var string
      */
-    public $compiledPath;
+    protected $compiledPath;
 
     /**
      * @var DispatcherContract
      */
-    public $events;
+    protected $events;
 
     /**
      * @var Filesystem
      */
-    public $files;
+    protected $files;
 
     /**
      * @var EngineResolver
      */
-    public $resolver;
+    protected $resolver;
 
     /**
      * @var CompilerInterface
      */
-    public $bladeCompiler;
+    protected $bladeCompiler;
 
     /**
      * @var FileViewFinder
      */
-    public $finder;
+    protected $finder;
 
     /**
      * @var Factory
      */
-    public $view;
+    protected $view;
 
     /**
      * @param string|array             $view_paths
@@ -76,7 +76,7 @@ class Blade
     public function __construct($view_paths, $compiled_path, DispatcherContract $events = null, ViewFinderInterface $finder = null, FactoryContract $factory = null)
     {
         $this->viewPaths    = (array) $view_paths;
-        $this->compiledPath = $compiled_path;
+        $this->compiledPath = (string) $compiled_path;
         $this->events       = $events ?: new Dispatcher();
 
         $this->registerFilesystem()

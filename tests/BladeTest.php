@@ -20,10 +20,9 @@ class BladeTest extends PHPUnit\Framework\TestCase
     /** @test */
     public function it_compiles()
     {
-        $bar = 'Lorem ipsum dolor sit amet';
-
         $output = (new Blade(__DIR__ . '/views', __DIR__ . '/cache'))
-            ->make('foo', compact('bar'))
+            ->make('foo')
+            ->withBar($bar = 'Lorem ipsum dolor sit amet')
             ->render();
 
         $this->assertContains($bar, $output);

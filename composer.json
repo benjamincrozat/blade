@@ -1,6 +1,6 @@
 {
     "name": "benjamincrozat/blade",
-    "description": "Use Laravel Blade in any PHP project with minimal footprints.",
+    "description": "Use Laravel Blade in any PHP project.",
     "homepage": "https://github.com/benjamincrozat/bade",
     "license": "MIT",
     "authors": [
