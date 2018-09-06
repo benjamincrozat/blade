@@ -37,11 +37,11 @@ Add the `@hello('John')` directive:
 
 ```php
 $blade->directive('hello', function ($expression) {
-    return '<?php echo \'Hello ' . $expression . '\'; ?>';
+    return '<?php echo "Hello $expression!"; ?>';
 });
 ```
 
-Make a variable available in all views with view composers:
+Make a variable available in all views thanks to view composers:
 
 ```php
 $blade->composer('*', function ($view) {
@@ -51,7 +51,7 @@ $blade->composer('*', function ($view) {
 });
 ```
 
-... and so on. Learn how to use Blade on the [official documentation](https://laravel.com/docs/blade).
+... and so on. Just use Blade as you are used to.
 
 Enjoy!
 
