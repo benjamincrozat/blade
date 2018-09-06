@@ -5,9 +5,9 @@
 
 # Blade
 
-Use [Laravel Blade](https://laravel.com/docs/blade) in any PHP project with minimal footprints.
+Use [Laravel Blade](https://laravel.com/docs/blade) in any PHP project with minimal footprints. The adapter class is clean and I don't make use of unecessary Laravel related dependencies.
 
-**Yes, this repository is just a port of Blade to non-Laravel projects. If you don't know about it yet, please refer to the [official documentation](https://laravel.com/docs/blade).**
+**If you don't know about Blade yet, please refer to the [official documentation](https://laravel.com/docs/blade).**
 
 ## Requirements
 
@@ -37,6 +37,8 @@ Add the `@hello('John')` directive:
 
 ```php
 $blade->directive('hello', function ($expression) {
+    $expression = trim($expression, '\'"');
+    
     return '<?php echo "Hello $expression!"; ?>';
 });
 ```
