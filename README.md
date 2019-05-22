@@ -30,7 +30,7 @@ use BC\Blade\Blade;
 
 $blade = new Blade(__DIR__ . '/views', __DIR__ . '/cache');
 
-echo $blade->make('home', ['foo' => 'bar'))->render();
+echo $blade->make('home', ['foo' => 'bar'])->render();
 ```
 
 Add the `@hello('John')` directive:
