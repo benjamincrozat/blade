@@ -30,7 +30,9 @@ use BC\Blade\Blade;
 
 $blade = new Blade(__DIR__ . '/views', __DIR__ . '/cache');
 
-echo $blade->make('home', ['foo' => 'bar'])->render();
+echo $blade->make('home')
+    ->withFoo('bar')
+    ->render();
 ```
 
 Add the `@hello('John')` directive:
@@ -46,9 +48,7 @@ $blade->directive('hello', function ($expression) {
 Make a variable available in all views thanks to view composers:
 
 ```php
-$blade->composer('*', function ($view) {
-    $view->with(['foo' => 'bar']);
-});
+$blade->composer('*', fn ($view) => $view->withFoo('bar'));
 ```
 
 ... and so on. Just use Blade as you are used to.
