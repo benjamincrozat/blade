@@ -28,7 +28,7 @@ Here is a basic view rendering:
 ```php
 use BC\Blade\Blade;
 
-$blade = new Blade(__DIR__ . '/views', __DIR__ . '/cache');
+$blade = new Blade('views', 'cache');
 
 echo $blade->make('home')
     ->withFoo('bar')
