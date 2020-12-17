@@ -1,3 +1,4 @@
+![Tests](https://github.com/benjamincrozat/blade/workflows/Tests/badge.svg)
 [![Latest Stable Version](https://poser.pugx.org/benjamincrozat/blade/v/stable)](https://packagist.org/packages/benjamincrozat/blade)
 [![Total Downloads](https://poser.pugx.org/benjamincrozat/blade/downloads)](https://packagist.org/packages/benjamincrozat/blade)
 
