@@ -1,7 +1,5 @@
 .DS_Store
-/.idea
-/.phpintel
-/.vscode
+/.php_cs.cache
+/.phpunit.result.cache
+/composer.lock
 /vendor
-composer.lock
-Thumbs.db

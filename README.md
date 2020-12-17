@@ -9,10 +9,6 @@ Use [Laravel Blade](https://laravel.com/docs/blade) in any PHP project. The adap
 
 **If you don't know about Blade yet, please refer to the [official documentation](https://laravel.com/docs/blade).**
 
-## Requirements
-
-- PHP 5.6+
-
 ## Installation
 
 ```php
@@ -57,4 +53,4 @@ Enjoy!
 
 ## License
 
-[MIT](http://opensource.org/licenses/MIT)
+[WTFPL](http://www.wtfpl.net/txt/copying/)

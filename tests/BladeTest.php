@@ -1,14 +1,13 @@
 <?php
 
 use BC\Blade\Blade;
-use Illuminate\View\View;
 
 class BladeTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Clear Blade's cache before each test.
      */
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
 
@@ -18,13 +17,13 @@ class BladeTest extends PHPUnit\Framework\TestCase
     }
 
     /** @test */
-    public function it_compiles()
+    public function it_compiles() : void
     {
         $output = (new Blade(__DIR__ . '/views', __DIR__ . '/cache'))
             ->make('foo')
-            ->withBar($bar = 'Lorem ipsum dolor sit amet')
+            ->with(['bar' => $bar = 'Lorem ipsum dolor sit amet'])
             ->render();
 
-        $this->assertContains($bar, $output);
+        $this->assertStringContainsString($bar, $output);
     }
 }

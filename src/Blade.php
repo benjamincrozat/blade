@@ -11,6 +11,7 @@ use Illuminate\View\ViewFinderInterface;
 use Illuminate\View\Engines\CompilerEngine;
 use Illuminate\View\Engines\EngineResolver;
 use Illuminate\View\Compilers\BladeCompiler;
+use Illuminate\View\Compilers\CompilerInterface;
 use Illuminate\Contracts\View\Factory as FactoryContract;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 
@@ -20,60 +21,26 @@ use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
  */
 class Blade
 {
-    /**
-     * Array of paths to Blade files.
-     *
-     * @var array
-     */
-    protected $viewPaths;
+    protected array $viewPaths;
+
+    protected string $compiledPath;
+
+    protected DispatcherContract $events;
+
+    protected Filesystem $files;
+
+    protected EngineResolver $resolver;
+
+    protected CompilerInterface $bladeCompiler;
+
+    protected FileViewFinder $finder;
+
+    protected Factory $view;
 
     /**
-     * Path to compiled Blade files.
-     *
-     * @var string
+     * @param string|array $view_paths
      */
-    protected $compiledPath;
-
-    /**
-     * @var DispatcherContract
-     */
-    protected $events;
-
-    /**
-     * @var Filesystem
-     */
-    protected $files;
-
-    /**
-     * @var EngineResolver
-     */
-    protected $resolver;
-
-    /**
-     * @var CompilerInterface
-     */
-    protected $bladeCompiler;
-
-    /**
-     * @var FileViewFinder
-     */
-    protected $finder;
-
-    /**
-     * @var Factory
-     */
-    protected $view;
-
-    /**
-     * @param string|array             $view_paths
-     * @param string                   $compiled_path
-     * @param DispatcherContract|null  $events
-     * @param Filesystem|null          $files
-     * @param EngineResolver|null      $resolver
-     * @param ViewFinderInterface|null $finder
-     * @param FactoryContract|null     $factory
-     */
-    public function __construct($view_paths, $compiled_path, DispatcherContract $events = null, ViewFinderInterface $finder = null, FactoryContract $factory = null)
+    public function __construct($view_paths, string $compiled_path, DispatcherContract $events = null, ?ViewFinderInterface $finder = null, FactoryContract $factory = null)
     {
         $this->viewPaths    = (array) $view_paths;
         $this->compiledPath = (string) $compiled_path;
@@ -89,12 +56,9 @@ class Blade
      * Undefined methods are proxied to the compiler
      * and the view factory for API ease of use.
      *
-     * @param string $name
-     * @param array  $arguments
-     *
      * @return mixed
      */
-    public function __call($name, $arguments)
+    public function __call(string $name, array $arguments)
     {
         if (method_exists($this->bladeCompiler, $name)) {
             return $this->bladeCompiler->{$name}(...$arguments);
@@ -105,20 +69,14 @@ class Blade
         }
     }
 
-    /**
-     * @return self
-     */
-    protected function registerFilesystem()
+    protected function registerFilesystem() : self
     {
         $this->files = new Filesystem();
 
         return $this;
     }
 
-    /**
-     * @return self
-     */
-    protected function registerEngineResolver()
+    protected function registerEngineResolver() : self
     {
         $this->resolver = new EngineResolver();
 
@@ -126,10 +84,7 @@ class Blade
             ->registerBladeEngine();
     }
 
-    /**
-     * @return self
-     */
-    protected function registerPhpEngine()
+    protected function registerPhpEngine() : self
     {
         $this->resolver->register('php', function () {
             return new PhpEngine();
@@ -138,10 +93,7 @@ class Blade
         return $this;
     }
 
-    /**
-     * @return self
-     */
-    protected function registerBladeEngine()
+    protected function registerBladeEngine() : self
     {
         $this->bladeCompiler = new BladeCompiler($this->files, $this->compiledPath);
 
@@ -152,24 +104,14 @@ class Blade
         return $this;
     }
 
-    /**
-     * @param ViewFinderInterface|null $finder
-     *
-     * @return self
-     */
-    protected function registerViewFinder(ViewFinderInterface $finder = null)
+    protected function registerViewFinder(?ViewFinderInterface $finder = null) : self
     {
         $this->finder = $finder ?: new FileViewFinder($this->files, $this->viewPaths);
 
         return $this;
     }
 
-    /**
-     * @param FactoryContract|null $factory
-     *
-     * @return self
-     */
-    protected function registerFactory(FactoryContract $factory = null)
+    protected function registerFactory(?FactoryContract $factory = null) : self
     {
         $this->view = $factory ?: new Factory($this->resolver, $this->finder, $this->events);
 
